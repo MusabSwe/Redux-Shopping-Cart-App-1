@@ -1,13 +1,25 @@
 import React from "react";
-import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
 import Auth from "./components/Auth";
+import { authActions } from './store/auth-slice'
 import Layout from "./components/Layout";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isLoggedIn);
+  const dispatch = useDispatch();
+
+  const login = () => {
+    dispatch(authActions.login())
+  }
+
+  const logout = () => {
+    dispatch(authActions.logout())
+  }
   return (
     <div className="App">
-      {/* <Auth /> */}
-      <Layout />
+      {!isLoggedIn && <Auth />}
+      {isLoggedIn && <Layout />}
     </div>
   );
 }
