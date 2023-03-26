@@ -1,10 +1,12 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
+    // states
     name: 'auth',
     initialState: { isLoggedIn: false },
+
     reducers: {
-        // functions
+        // functions Event listeners to update above states
         login(state) {
             state.isLoggedIn = true;
         },
